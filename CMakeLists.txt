@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_subdirectory(ThirdParty)
 
 add_library(kore STATIC
+    Include/Assertion.hpp
     Include/Exceptions/RuntimeException.hpp
     Source/Exceptions/RuntimeException.cpp
     Include/Utilities/Strings.hpp

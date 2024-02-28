@@ -5,7 +5,13 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(Source/ThirdParty)
 
-add_library(kore STATIC
+option(LIBKORE_SHARED "Build dynamic libkore as shared object" OFF)
+
+if(LIBKORE_SHARED)
+    set(LIBKORE_TYPE SHARED)
+endif()
+
+add_library(kore ${LIBKORE_TYPE}
     Source/Public/Assertion.hpp
     Source/Public/Exceptions/RuntimeException.hpp
     Source/Private/Exceptions/RuntimeException.cpp

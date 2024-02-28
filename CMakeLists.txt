@@ -3,7 +3,7 @@ project(libkore)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_subdirectory(ThirdParty)
+add_subdirectory(Source/ThirdParty)
 
 add_library(kore STATIC
     Source/Public/Assertion.hpp

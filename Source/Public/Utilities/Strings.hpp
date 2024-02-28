@@ -34,6 +34,6 @@ namespace LibKore::Utilities
         static void trimRight(std::string& string);
         static void trim(std::string& string);
 
-        [[nidiscard]] static std::vector<std::string> split(const std::string& string, char delimiter);
+        [[nodiscard]] static std::vector<std::string> split(const std::string& string, char delimiter);
     };
 } // namespace LibKore::Utilities

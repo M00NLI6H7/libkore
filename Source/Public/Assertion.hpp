@@ -22,8 +22,8 @@ SOFTWARE.
 
 #pragma once
 
-#define KORE_VERIFY_THROW(EXPR, EXCEPTION, ARGS...) \
-    if(!(EXPR))                                     \
-    {                                               \
-        throw EXCEPTION(ARGS);                      \
+#define LIBKORE_VERIFY_THROW(EXPR, EXCEPTION, ARGS...) \
+    if(!(EXPR))                                        \
+    {                                                  \
+        throw EXCEPTION(ARGS);                         \
     }

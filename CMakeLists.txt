@@ -35,6 +35,7 @@ add_library(kore ${LIBKORE_TYPE}
     Source/Public/Assertion.hpp
     Source/Public/Exceptions/RuntimeException.hpp
     Source/Private/Exceptions/RuntimeException.cpp
+    Source/Public/Stream/Stream.hpp
     Source/Public/Utilities/Strings.hpp
     Source/Private/Utilities/Strings.cpp
 )

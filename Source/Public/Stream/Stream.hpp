@@ -25,6 +25,7 @@ SOFTWARE.
 #include "fmt/format.h"
 
 #include <array>
+#include <vector>
 
 namespace LibKore
 {
@@ -191,6 +192,34 @@ namespace LibKore
             }
 
             return array;
+        }
+
+        template<typename T>
+        [[nodiscard]] inline std::vector<T> readSome(std::size_t count)
+            requires(StandardInputStream<TStream> || StandardInputOutputStream<TStream>) && std::is_fundamental_v<T>
+        {
+            std::vector<T> vector{};
+            vector.reserve(count);
+            for(std::size_t index = 0; index < count; index++)
+            {
+                vector.emplace_back(read<T>());
+            }
+
+            return vector;
+        }
+
+        template<typename T>
+        [[nodiscard]] inline std::vector<T> readSome(std::size_t count)
+            requires(StandardInputStream<TStream> || StandardInputOutputStream<TStream>) && Readable<T, TStream, ReadMode, WriteMode>
+        {
+            std::vector<T> vector{};
+            vector.reserve(count);
+            for(std::size_t index = 0; index < count; index++)
+            {
+                vector.emplace_back(T::read(*this));
+            }
+
+            return vector;
         }
 
         template<typename T>

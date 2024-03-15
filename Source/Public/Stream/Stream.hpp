@@ -24,6 +24,8 @@ SOFTWARE.
 #include "Exceptions/RuntimeException.hpp"
 #include "fmt/format.h"
 
+#include <array>
+
 namespace LibKore
 {
     template<typename T>
@@ -163,6 +165,32 @@ namespace LibKore
             requires(StandardInputStream<TStream> || StandardInputOutputStream<TStream>) && Readable<T, TStream, ReadMode, WriteMode>
         {
             return T::read(*this);
+        }
+
+        template<typename T, std::size_t size>
+        [[nodiscard]] inline std::array<T, size> readSome()
+            requires(StandardInputStream<TStream> || StandardInputOutputStream<TStream>) && std::is_fundamental_v<T>
+        {
+            std::array<T, size> array{};
+            for(std::size_t index = 0; index < size; index++)
+            {
+                array[index] = read<T>();
+            }
+
+            return array;
+        }
+
+        template<typename T, std::size_t size>
+        [[nodiscard]] inline std::array<T, size> readSome()
+            requires(StandardInputStream<TStream> || StandardInputOutputStream<TStream>) && Readable<T, TStream, ReadMode, WriteMode>
+        {
+            std::array<T, size> array{};
+            for(std::size_t index = 0; index < size; index++)
+            {
+                array[index] = T::read(*this);
+            }
+
+            return array;
         }
 
         template<typename T>

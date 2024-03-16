@@ -21,6 +21,7 @@ SOFTWARE.
 */
 
 #pragma once
+
 #include "Assertion.hpp"
 #include "Exceptions/RuntimeException.hpp"
 #include "fmt/format.h"
@@ -241,6 +242,8 @@ namespace LibKore
         template<typename T>
         inline T readInternal()
         {
+            LIBKORE_VERIFY_THROW(isOpen(), LibKore::Exceptions::RuntimeException, "Stream is not open!");
+
             const std::size_t readSize = sizeof(T);
             const std::size_t readPos = readPosition();
 

@@ -144,6 +144,12 @@ namespace LibKore
             return m_stream.tellp();
         }
 
+        [[nodiscard]] inline std::size_t size() const
+            requires StandardInputStream<TStream> || StandardInputOutputStream<TStream>
+        {
+            return m_size;
+        }
+
         inline void seekRead(std::size_t position, std::ios::seekdir seekType = std::ios::seekdir::cur)
             requires StandardInputStream<TStream> || StandardInputOutputStream<TStream>
         {
